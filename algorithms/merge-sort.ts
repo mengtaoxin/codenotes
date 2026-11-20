@@ -13,28 +13,28 @@ export function mergeSort(arr: number[]): number[] {
   return merge(mergeSort(left), mergeSort(right))
 }
 
-function merge(sortedArr1: number[], sortedArr2: number[]): number[] {
+function merge(arr1: number[], arr2: number[]): number[] {
   let result = [];
 
-  let i = 0;
-  let j = 0;
-  while (i < sortedArr1.length || j < sortedArr2.length) {
-    if (i === sortedArr1.length) {
-      result.push(sortedArr2[j])
-      j++;
+  let i1 = 0;
+  let i2 = 0;
+  while (i1 < arr1.length || i2 < arr2.length) {
+    if (i1 === arr1.length) {
+      result.push(arr2[i2])
+      i2++;
       continue;
-    } else if (j === sortedArr2.length) {
-      result.push(sortedArr1[i])
-      i++;
+    } else if (i2 === arr2.length) {
+      result.push(arr1[i1])
+      i1++;
       continue;
     }
 
-    if (sortedArr1[i] < sortedArr2[j]) {
-      result.push(sortedArr1[i])
-      i++;
+    if (arr1[i1] < arr2[i2]) {
+      result.push(arr1[i1])
+      i1++;
     } else {
-      result.push(sortedArr2[j])
-      j++;
+      result.push(arr2[i2])
+      i2++;
     }
   }
 
@@ -42,12 +42,13 @@ function merge(sortedArr1: number[], sortedArr2: number[]): number[] {
 }
 
 function split(arr: number[]) {
-  const left = subarr(arr, 0, Math.floor(arr.length / 2));
-  const right = subarr(arr, Math.floor(arr.length / 2), arr.length)
+  const i = Math.floor(arr.length / 2);
+  const left = sub(arr, 0, i);
+  const right = sub(arr, i, arr.length)
   return [left, right]
 }
 
-function subarr(arr: number[], start: number, end: number) {
+function sub(arr: number[], start: number, end: number) {
   let result = []
   while (start < arr.length && start < end) {
     result.push(arr[start])
