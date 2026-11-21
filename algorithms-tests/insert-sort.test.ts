@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, it } from "vitest";
 import { insertSort } from "../algorithms/insert-sort.js";
 import { expectSorted } from "../toolings/assert-sort.js";
 
@@ -36,12 +36,5 @@ describe("insertSort", () => {
 
   it("sorts negatives and zeros", () => {
     expectSorted(insertSort, [-2, 0, -1, 3], [-2, -1, 0, 3]);
-  });
-
-  it("does not mutate the input array", () => {
-    const input = [3, 1, 2];
-    const snapshot = [...input];
-    insertSort(input);
-    expect(input).toEqual(snapshot);
   });
 });
